@@ -112,17 +112,11 @@
     <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <h2>Testing Conventions</h2>
+    <h2>RSpec Conventions are Great</h2>
 
-<p>The Ruby community has some great conventions:</p>
+<p>Put your setup into <code>spec/spec_helper.rb</code></p>
 
-<ul>
-<li>Separation of concerns</li>
-<li>Environment setup in <code>spec_helper.rb</code></li>
-<li>before/after blocks</li>
-<li>Stubbing and Mocking</li>
-<li>Exception handling</li>
-</ul>
+<p>Only test one thing at a time</p>
   </div>
   <div class='spacer bottom'></div>
 </section>
@@ -140,7 +134,7 @@
   <div class='content'>
     <h2>Test Driven Bash</h2>
     
-    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;. spec/spec_helper.sh&#x000A;&#x000A;describe "pants"&#x000A;&#x000A;it_should_cover_my_shame () {&#x000A;  put_on_pants&#x000A;  test "$decent" = "true"&#x000A;}</textarea>
+    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;. spec/spec_helper.sh&#x000A;&#x000A;describe "pants"&#x000A;&#x000A;it_should_cover_my_shame () {&#x000A;  put_on_pants&#x000A;  test "$clothing" = "pants"&#x000A;}</textarea>
 </p>
     
     <p><textarea class='code' display='none' mode=''># spec/spec_helper.sh&#x000A;&#x000A;. script/pants.sh</textarea>
@@ -156,7 +150,7 @@
   <div class='content'>
     <h2>Make it Pass</h2>
     
-    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  decent=true&#x000A;}</textarea>
+    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  clothing=pants&#x000A;}</textarea>
 </p>
     
     <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   1 | Failed:   0</textarea>
@@ -169,10 +163,10 @@
   <div class='content'>
     <h2>Driving out features</h2>
     
-    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;before () {&#x000A;  clothing=shirt&#x000A;}&#x000A;&#x000A;...&#x000A;&#x000A;it_should_not_be_like_uncle_richard () {&#x000A;  clothing=&#x000A;  put_on_pants&#x000A;  test "$decent" != "true"&#x000A;}</textarea>
+    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;...&#x000A;&#x000A;it_should_not_let_me_act_like_uncle_richard () {&#x000A;  clothing=shirt&#x000A;  put_on_pants&#x000A;  test "$clothing" = "shirt pants"&#x000A;}</textarea>
 </p>
     
-    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [FAIL]&#x000A;    + clothing=&#x000A;    + put_on_pants&#x000A;    + decent=true&#x000A;    + test true '!=' true&#x000A;    exit code 1&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   1 | Failed:   1</textarea>
+    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [FAIL]&#x000A;    + clothing=shirt&#x000A;    + put_on_pants&#x000A;    + clothing=pants&#x000A;    + test shirt = 'shirt pants'&#x000A;    exit code 1&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   1 | Failed:   1</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -182,7 +176,7 @@
   <div class='content'>
     <h2>Making it Green</h2>
     
-    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  if [ -n "$clothing" ]&#x000A;  then&#x000A;    decent=true&#x000A;  fi&#x000A;}</textarea>
+    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  clothing="$clothing pants"&#x000A;}</textarea>
 </p>
     
     <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [PASS]&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   2 | Failed:   0</textarea>
@@ -191,26 +185,13 @@
   <div class='spacer bottom'></div>
 </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Don't abuse POSIX</h2>
-
-<h3>It's had a hard life</h3>
-
-<pre><code>My solution to JSON and XML is sed.
-It works in all resource conditions
-and most times is just as fast as
-any RAM hungry parser.
-
-                    — @shit_hn_says
-</code></pre>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
         <h2>In the wild</h2>
+        
+        <h3>Roundup</h3>
+        
+        <p>github.com/ohrite/roundup</p>
         
         <h3>Snowflake</h3>
         
