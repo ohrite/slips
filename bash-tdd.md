@@ -123,15 +123,13 @@ grep "$sudo_string" /etc/sudoers || echo "$sudo_string" >> /etc/sudoers
 
 !SLIDE
 
-## Testing Conventions
+## RSpec Conventions are Great
 
-The Ruby community has some great conventions:
+Put your setup into `spec/spec_helper.rb`
 
-* Separation of concerns
-* Environment setup in `spec_helper.rb`
-* before/after blocks
-* Stubbing and Mocking
-* Exception handling
+Only test one thing at a time
+
+
 
 
 !SLIDE
@@ -155,7 +153,7 @@ By Blake Mizerany of heroku
 
   it_should_cover_my_shame () {
     put_on_pants
-    test "$decent" = "true"
+    test "$clothing" = "pants"
   }
 ```
 
@@ -187,7 +185,7 @@ By Blake Mizerany of heroku
   # script/pants.sh
 
   put_on_pants () {
-    decent=true
+    clothing=pants
   }
 ```
 
@@ -206,17 +204,13 @@ Tests:    1 | Passed:   1 | Failed:   0
 ```
 
   # spec/script/pants_spec.sh
-
-  before () {
-    clothing=shirt
-  }
   
   ...
 
-  it_should_not_be_like_uncle_richard () {
-    clothing=
+  it_should_not_let_me_act_like_uncle_richard () {
+    clothing=shirt
     put_on_pants
-    test "$decent" != "true"
+    test "$clothing" = "shirt pants"
   }
 ```
 
@@ -225,10 +219,10 @@ Tests:    1 | Passed:   1 | Failed:   0
   pants
     should cover my shame:                           [PASS]
     should not let me act like uncle richard:        [FAIL]
-      + clothing=
+      + clothing=shirt
       + put_on_pants
-      + decent=true
-      + test true '!=' true
+      + clothing=pants
+      + test shirt = 'shirt pants'
       exit code 1
   =========================================================
   Tests:    2 | Passed:   1 | Failed:   1
@@ -243,10 +237,7 @@ Tests:    1 | Passed:   1 | Failed:   0
   # script/pants.sh
 
   put_on_pants () {
-    if [ -n "$clothing" ]
-    then
-      decent=true
-    fi
+    clothing="$clothing pants"
   }
 ```
 
@@ -262,21 +253,11 @@ Tests:    1 | Passed:   1 | Failed:   0
 
 !SLIDE
 
-## Don't abuse POSIX
-
-### It's had a hard life
-
-    My solution to JSON and XML is sed.
-    It works in all resource conditions
-    and most times is just as fast as
-    any RAM hungry parser.
-
-                        — @shit_hn_says
-
-
-!SLIDE
-
 ## In the wild
+
+### Roundup
+
+github.com/ohrite/roundup
 
 ### Snowflake
 
