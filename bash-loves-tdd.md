@@ -2,24 +2,10 @@
 
 !SLIDE
 
-# TDD and Bash
+# TDD with Bash
 
 ## Doc Ritezel
 ### Pivotal Labs
-
-
-!SLIDE
-
-## Don't abuse POSIX
-
-### It's had a hard life
-
-    My solution to JSON and XML is sed.
-    It works in all resource conditions
-    and most times is just as fast as
-    any RAM hungry parser.
-
-                        — @shit_hn_says
 
 
 !SLIDE
@@ -157,32 +143,80 @@ By Blake Mizerany of heroku
 
 !SLIDE
 
-## Testing Bash
+## Test Driven Bash
+
+```
+
+  # spec/script/pants_spec.sh
+
+  . spec/spec_helper.sh
+
+  describe "pants"
+
+  it_should_cover_my_shame () {
+    put_on_pants
+    test "$decent" = "true"
+  }
+```
+
+```
+
+  # spec/spec_helper.sh
+
+  . script/pants.sh
+```
+
+```
+
+  pants
+    should cover my shame:                           [FAIL]
+    + put_on_pants
+    ./spec/script/pants_spec.sh: line 10: put_on_pants: command not found
+    exit code 127
+  =========================================================
+  Tests:    1 | Passed:   0 | Failed:   1
+```
+
+
+!SLIDE
+
+## Make it Pass 
 
 ```
 
   # script/pants.sh
 
   put_on_pants () {
-    indecent=false
+    decent=true
   }
 ```
+
+```
+
+pants
+  should cover my shame:                           [PASS]
+=========================================================
+Tests:    1 | Passed:   1 | Failed:   0
+```
+
+!SLIDE
+
+## Driving out features
 
 ```
 
   # spec/script/pants_spec.sh
 
-  . spec/spec_helper
-
-  describe "pants"
-
   before () {
-    indecent=true
+    clothing=shirt
   }
+  
+  ...
 
-  it_should_cover_my_shame () {
+  it_should_not_be_like_uncle_richard () {
+    clothing=
     put_on_pants
-    test "$indecent" = "false"
+    test "$decent" != "true"
   }
 ```
 
@@ -190,9 +224,55 @@ By Blake Mizerany of heroku
 
   pants
     should cover my shame:                           [PASS]
+    should not let me act like uncle richard:        [FAIL]
+      + clothing=
+      + put_on_pants
+      + decent=true
+      + test true '!=' true
+      exit code 1
   =========================================================
-  Tests:    1 | Passed:   1 | Failed:   0
+  Tests:    2 | Passed:   1 | Failed:   1
 ```
+
+!SLIDE
+
+## Making it Green
+
+```
+
+  # script/pants.sh
+
+  put_on_pants () {
+    if [ -n "$clothing" ]
+    then
+      decent=true
+    fi
+  }
+```
+
+```
+
+  pants
+    should cover my shame:                           [PASS]
+    should not let me act like uncle richard:        [PASS]
+  =========================================================
+  Tests:    2 | Passed:   2 | Failed:   0
+```
+
+
+!SLIDE
+
+## Don't abuse POSIX
+
+### It's had a hard life
+
+    My solution to JSON and XML is sed.
+    It works in all resource conditions
+    and most times is just as fast as
+    any RAM hungry parser.
+
+                        — @shit_hn_says
+
 
 !SLIDE
 
@@ -202,9 +282,13 @@ By Blake Mizerany of heroku
 
 github.com/ohrite/snowflake
 
-
-
-
 ### Cascading Multitool
 
 github.com/cascading/cascading.multitool
+
+
+!SLIDE
+
+# Questions?
+
+#### @ohritezel
