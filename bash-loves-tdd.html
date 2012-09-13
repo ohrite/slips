@@ -27,7 +27,7 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>TDD and Bash</h1>
+        <h1>TDD with Bash</h1>
         
         <h2>Doc Ritezel</h2>
         
@@ -35,23 +35,6 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Don't abuse POSIX</h2>
-
-<h3>It's had a hard life</h3>
-
-<pre><code>My solution to JSON and XML is sed.
-It works in all resource conditions
-and most times is just as fast as
-any RAM hungry parser.
-
-                    — @shit_hn_says
-</code></pre>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -155,16 +138,72 @@ any RAM hungry parser.
     <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <h2>Testing Bash</h2>
+    <h2>Test Driven Bash</h2>
     
-    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  indecent=false&#x000A;}</textarea>
+    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;. spec/spec_helper.sh&#x000A;&#x000A;describe "pants"&#x000A;&#x000A;it_should_cover_my_shame () {&#x000A;  put_on_pants&#x000A;  test "$decent" = "true"&#x000A;}</textarea>
 </p>
     
-    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;. spec/spec_helper&#x000A;&#x000A;describe "pants"&#x000A;&#x000A;before () {&#x000A;  indecent=true&#x000A;}&#x000A;&#x000A;it_should_cover_my_shame () {&#x000A;  put_on_pants&#x000A;  test "$indecent" = "false"&#x000A;}</textarea>
+    <p><textarea class='code' display='none' mode=''># spec/spec_helper.sh&#x000A;&#x000A;. script/pants.sh</textarea>
+</p>
+    
+    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [FAIL]&#x000A;  + put_on_pants&#x000A;  ./spec/script/pants_spec.sh: line 10: put_on_pants: command not found&#x000A;  exit code 127&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   0 | Failed:   1</textarea>
+</p>
+  </div>
+  <div class='spacer bottom'></div>
+</section>
+    <section class='slide'>
+  <div class='spacer top'></div>
+  <div class='content'>
+    <h2>Make it Pass</h2>
+    
+    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  decent=true&#x000A;}</textarea>
 </p>
     
     <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   1 | Failed:   0</textarea>
 </p>
+  </div>
+  <div class='spacer bottom'></div>
+</section>
+    <section class='slide'>
+  <div class='spacer top'></div>
+  <div class='content'>
+    <h2>Driving out features</h2>
+    
+    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;before () {&#x000A;  clothing=shirt&#x000A;}&#x000A;&#x000A;...&#x000A;&#x000A;it_should_not_be_like_uncle_richard () {&#x000A;  clothing=&#x000A;  put_on_pants&#x000A;  test "$decent" != "true"&#x000A;}</textarea>
+</p>
+    
+    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [FAIL]&#x000A;    + clothing=&#x000A;    + put_on_pants&#x000A;    + decent=true&#x000A;    + test true '!=' true&#x000A;    exit code 1&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   1 | Failed:   1</textarea>
+</p>
+  </div>
+  <div class='spacer bottom'></div>
+</section>
+    <section class='slide'>
+  <div class='spacer top'></div>
+  <div class='content'>
+    <h2>Making it Green</h2>
+    
+    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  if [ -n "$clothing" ]&#x000A;  then&#x000A;    decent=true&#x000A;  fi&#x000A;}</textarea>
+</p>
+    
+    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [PASS]&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   2 | Failed:   0</textarea>
+</p>
+  </div>
+  <div class='spacer bottom'></div>
+</section>
+    <section class='slide'>
+  <div class='spacer top'></div>
+  <div class='content'>
+    <h2>Don't abuse POSIX</h2>
+
+<h3>It's had a hard life</h3>
+
+<pre><code>My solution to JSON and XML is sed.
+It works in all resource conditions
+and most times is just as fast as
+any RAM hungry parser.
+
+                    — @shit_hn_says
+</code></pre>
   </div>
   <div class='spacer bottom'></div>
 </section>
@@ -180,6 +219,15 @@ any RAM hungry parser.
         <h3>Cascading Multitool</h3>
         
         <p>github.com/cascading/cascading.multitool</p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Questions?</h1>
+        
+        <h4>@ohritezel</h4>
       </div>
       <div class='spacer bottom'></div>
     </section>
