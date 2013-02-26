@@ -1,3 +1,14 @@
+#!/usr/bin/env ruby
+
+guard :bundler do
+  watch('Gemfile')
+end
+
+guard :rack, :port => 9292 do
+  watch('Gemfile.lock')
+  watch('config.ru')
+end
+
 guard :shell do
   watch(%r{^([^\/]+)\.md$}) do |m|
     puts "Rebuilding #{m[0]}"
