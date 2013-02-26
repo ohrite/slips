@@ -28,6 +28,11 @@
   background-size: cover;
 }
 
+.keydown.deck-container .slide.titlecard.with.a.trap {
+  background: url("/images/creche.jpg");
+  background-size: cover;
+}
+
   .keydown.deck-container .slide.main.titlecard h1 {
     margin-bottom: 5em;
   }
