@@ -10,3 +10,47 @@
 /*.deck-status {*/
     /*display: none;*/
 /*}*/
+
+
+
+.keydown.deck-container .slide.titlecard.with.a.flower {
+  background: url("/images/flower.jpg");
+  background-size: cover;
+}
+
+.keydown.deck-container .slide.titlecard.with.a.truck {
+  background: url("/images/truck.jpg");
+  background-size: cover;
+}
+
+.keydown.deck-container .slide.titlecard.with.cookie.monster {
+  background: url("/images/cookie-monster.jpg");
+  background-size: cover;
+}
+
+  .keydown.deck-container .slide.main.titlecard h1 {
+    margin-bottom: 5em;
+  }
+
+  .keydown.deck-container .slide.titlecard h1,
+  .keydown.deck-container .slide.titlecard h2,
+  .keydown.deck-container .slide.titlecard h3,
+  .keydown.deck-container .slide.titlecard p {
+    color: white;
+    text-shadow: 0 0 60px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.5);
+  }
+  
+  .keydown.deck-container .slide.quotecard p {
+    width: 60%;
+  }
+  .keydown.deck-container .slide.quotecard h1,
+  .keydown.deck-container .slide.quotecard h2,
+  .keydown.deck-container .slide.quotecard h3,
+  .keydown.deck-container .slide.quotecard p {
+    color: black;
+    text-shadow: 0 0 60px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.2);
+  }
+
+  .keydown.deck-container .slide.quotecard.with.a.red.star.header h1 {
+    color: #c00;
+  }

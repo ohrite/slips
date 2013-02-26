@@ -16,9 +16,8 @@ guard :shell do
     site_path = File.expand_path("../_site", __FILE__)
     ["css", "deck.js", "images", "js"].each do |component|
       source = File.join(slips_path, component)
-      destination = File.join(site_path, component)
-      puts "* Regenerating #{destination}"
-      FileUtils.cp_r(source, destination)
+      puts "* Regenerating #{source}"
+      FileUtils.cp_r(source, site_path)
     end
     
     require 'keydown'
