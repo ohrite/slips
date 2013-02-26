@@ -14,22 +14,22 @@
 
 
 .keydown.deck-container .slide.titlecard.with.a.flower {
-  background: url("/images/flower.jpg");
+  background: url("../images/flower.jpg");
   background-size: cover;
 }
 
 .keydown.deck-container .slide.titlecard.with.a.truck {
-  background: url("/images/truck.jpg");
+  background: url("../images/truck.jpg");
   background-size: cover;
 }
 
 .keydown.deck-container .slide.titlecard.with.cookie.monster {
-  background: url("/images/cookie-monster.jpg");
+  background: url("../images/cookie-monster.jpg");
   background-size: cover;
 }
 
 .keydown.deck-container .slide.titlecard.with.a.trap {
-  background: url("/images/creche.jpg");
+  background: url("../images/creche.jpg");
   background-size: cover;
 }
 

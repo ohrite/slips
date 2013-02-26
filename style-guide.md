@@ -106,7 +106,7 @@ Directly affects the assets and presentation
 
 ## Starbucks Style Guide
 
-![Ghosts of Yesteryear](/images/starbucks.png)
+![Ghosts of Yesteryear](images/starbucks.png)
 
 
 !SLIDE
@@ -126,7 +126,7 @@ We can do better
 
 ## Github Style Guide
 
-![Ghosts of Backyard Parties](/images/github.png)
+![Ghosts of Backyard Parties](images/github.png)
 
 
 !SLIDE
