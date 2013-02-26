@@ -104,11 +104,6 @@ Directly affects the assets and presentation
 
 !SLIDE
 
-
-
-
-!SLIDE
-
 ## Starbucks Style Guide
 
 ![Ghosts of Yesteryear](/images/starbucks.png)
@@ -210,9 +205,9 @@ Cactus by Winston Teo
 [github.com/winston/cactus](https://github.com/winston/cactus)
 
 
-!SLIDE
+!SLIDE titlecard with a trap
 
-## Story Writing
+# Questions?
 
-Tim McCoy's concept of organizing a PM, Designer and Developer
+@ohritezel
 
