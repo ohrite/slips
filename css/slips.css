@@ -14,17 +14,17 @@
 
 
 .keydown.deck-container .slide.titlecard.with.a.flower {
-  background: url("/images/images/flower.jpg");
+  background: url("/images/flower.jpg");
   background-size: cover;
 }
 
 .keydown.deck-container .slide.titlecard.with.a.truck {
-  background: url("/images/images/truck.jpg");
+  background: url("/images/truck.jpg");
   background-size: cover;
 }
 
 .keydown.deck-container .slide.titlecard.with.cookie.monster {
-  background: url("/images/images/cookie-monster.jpg");
+  background: url("/images/cookie-monster.jpg");
   background-size: cover;
 }
 
@@ -39,11 +39,7 @@
     color: white;
     text-shadow: 0 0 60px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.5);
   }
-
-
-.keydown.deck-container .slide.quotecard {
-}
-
+  
   .keydown.deck-container .slide.quotecard p {
     width: 60%;
   }
