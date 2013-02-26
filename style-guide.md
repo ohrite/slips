@@ -1,11 +1,16 @@
 # Style Guide
 
-!SLIDE titlecard
+!SLIDE main titlecard with a flower
 
 # Style Guide
 
 ## Doc Ritezel
 ### Pivotal Labs
+
+
+!SLIDE quotecard
+
+When your project's medium of communication is Tracker comments, the terrorists win.
 
 !SLIDE
 
@@ -23,23 +28,24 @@
 
 !SLIDE
 
-## Meanwhile, in 2010
+## Meanwhile, in the 2000s
+
+
+!SLIDE
 
 ### Designer
 "I attach a mock, CSS and HTML to the Pivotal Tracker story."
 
 ### Developer
-"I pair with a Developer on implementing mocks.  I sometimes ask the designer about design details."
+"I pair with a Developer on implementing mocks.  I ask Designer about design details."
 
 ### Product Owner
-"I answer questions about design details that are not covered. I sometimes pair with a Developer on accepting implementation."
+"I answer questions about design details and accept implementation."
 
 
-!SLIDE
+!SLIDE quotecard
 
-## Telephone-Driven Development
-
-When your project's medium of communication is Tracker comments, the terrorists win.
+## We are the Terrorists
 
 
 !SLIDE
@@ -50,7 +56,7 @@ When your project's medium of communication is Tracker comments, the terrorists 
 !SLIDE
 
 ### Designer
-"After I make some mocks, I pair with a Developer on implementation."
+"After I prototype in [software], I pair with a Developer on implementation."
 
 
 !SLIDE
@@ -62,98 +68,151 @@ When your project's medium of communication is Tracker comments, the terrorists 
 !SLIDE
 
 ### Product Owner
-"I pair with a Designer to accept visuals, then a Developer to accept implementation."
+"Sometimes, I pair with a Designer to accept visual behavior, or a Developer to accept implementation."
+
+
+!SLIDE titlecard with a truck
+
+# How do we get there?
+
+### High-bandwidth Medium
+
+### High-fidelity Context
+
+### Early-stage Design Inclusion
+
+
+!SLIDE quotecard
+
+# Spoiler
+
+Style Guides do this.
+
+Pivotal has been using the Style Guide concept since last decade.
 
 
 !SLIDE
 
-## What are our goals?
+## Early-Stage Design Inclusion
 
-Designer-Developer Communication
+Isolated from the rest of the Rails app
 
-Story Acceptance
+Impact only the visual components
 
-Confident Sustainability
-
-!SLIDE
-
-# Designer-Developer Communication
+Directly affects the assets and presentation
 
 
 !SLIDE
-
-## Barriers
-
-**Frequency** –
-Design or implementation questions are ongoing
-
-**Goals** –
-Questions are usually just the starting point
-
-**Medium** –
-Wiki, Tracker and Comments are low-bandwidth
-
-
-!SLIDE
-
-## Solutions
-
-**Medium** –
-Choose a very high-bandwidth medium, like the actual browser
-
-**Goals** –
-Identifying the actual set of questions is visual
-
-**Frequency** –
-Pairing is the only way to ensure frequent communication
-
-
-!SLIDE
-
-# Story Acceptance
-
-
-!SLIDE
-
-## Barriers 
-
-**Implementation** –
-Designer is out of the loop after Developer implementation
-
-**Consistency** –
-Product Owner may not 
-
-**PM-only Acceptance** –
-Designer doesn't see the result
-
-**Design-Accept** –
-Design tracker chores
-
-
-!SLIDE
-
-## Confident Sustainability
 
 
 
 
 !SLIDE
 
-If we emailed code around, would we still pride ourselves on being higher mammals?
+## Starbucks Style Guide
+
+![Ghosts of Yesteryear](/images/images/starbucks.png)
 
 
 !SLIDE
 
-# Git
-Git is the answer
+## Starbucks Style Guide
+
+Manually curated
+
+Wiki-level effort to maintain
+
+Can be 
+
+We can do better
 
 
 !SLIDE
 
-# Panic
-Does this mean that designers write code now?
+## Github Style Guide
+
+![Ghosts of Backyard Parties](/images/images/github.png)
 
 
 !SLIDE
 
+## Github Style Guide
+
+Generated from inline comments
+
+Comments are lies
+
+We can do better
+
+
+!SLIDE
+
+## Pivotal Style Guide
+
+Concept dates to 2010
+
+Unit-level iteration
+
+Overview of all visual elements
+
+Manually curated
+
+
+!SLIDE
+
+## RSpec
+
+Unit-level iteration
+
+Overview of the functions of a site
+
+Manually curated
+
+
+!SLIDE titlecard with cookie monster
+
+# Demo Time
+
+
+!SLIDE
+
+## Discipline
+
+Any body of code outside of the main path will become stale
+
+Make your Style Guide the central point of implementation
+
+
+!SLIDE quotecard with a red star header
+
+# &#x272D;
+
+The revolutionary committee has no opinion on the following factions
+
+
+!SLIDE
+
+## View Helpers
+
+Style Guide has been forked to allow view partials
+
+[github.com/dirkkelly/style-guide](https://github.com/dirkkelly/style-guide)
+
+
+!SLIDE
+
+## Testing
+
+Test driving Style Guide elements is possible
+
+Cactus by Winston Teo
+
+[github.com/winston/cactus](https://github.com/winston/cactus)
+
+
+!SLIDE
+
+## Story Writing
+
+Tim McCoy's concept of organizing a PM, Designer and Developer
 
