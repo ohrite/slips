@@ -5,7 +5,6 @@
 # Style Guide
 
 ## Doc Ritezel
-### Pivotal Labs
 
 
 !SLIDE quotecard
@@ -88,7 +87,7 @@ When your project's medium of communication is Tracker comments, the terrorists 
 
 Style Guides do this.
 
-Pivotal has been using the Style Guide concept since last decade.
+People have been using the Style Guide concept since last decade.
 
 
 !SLIDE
@@ -117,8 +116,6 @@ Manually curated
 
 Wiki-level effort to maintain
 
-Can be 
-
 We can do better
 
 
@@ -142,9 +139,9 @@ We can do better
 
 !SLIDE
 
-## Pivotal Style Guide
+## Style Guide Gem
 
-Concept dates to 2010
+Concept dates to at least 2010
 
 Unit-level iteration
 
