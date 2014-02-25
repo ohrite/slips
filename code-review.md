@@ -1,7 +1,7 @@
-Dread-free programming through better code review
-=================================================
+Stop Trolling Me: Better Code Review
+====================================
 
-Does your team regularly turn technical discussions into tense confrontations?  Do you get confused by code changes on a regular basis?  Is pairing with a junior developer frustrating?  Software peer review on a modern development team, while essential to a healthy code and a happy team, is riddled with human-sized pitfalls.  Learn why talking about code in person is important, how to talk about code without burning bridges, and ways everyone can use empathy to remove dread from the workplace.
+Does your team regularly turn technical discussions into tense confrontations?  Do you get confused by code changes on a regular basis?  Is pairing with a junior developer frustrating?  Software peer review on a modern development team is essential to healthy code and a happy team. But it's riddled with human-sized pitfalls.  Learn why talking about code in person is important, how to talk about code without burning bridges, and ways everyone can use empathy to remove dread from the workplace.
 
 
 Pitch
@@ -36,77 +36,132 @@ I'll cover basic remediation steps for the first three pathologies:
 
 I'll also suggest techniques for teams that can't apply those things for whatever reason.  Then, for empathy, I'll cover the basics of active listening, and how to avoid common antipatterns, with real life examples.
 
+The Talk
+========
 
-Who is it about?
-----------------
-* Senior engineers in various forms of conflict
+Introduction
+------------
+Hi!  I'm Doc.  I'm Head of Operations for my consulting company, Ministry of Velocity.  We've done all sorts of projects, from agile coaching to Rails development to business analysis.  At my company we're really into this thing that you might have heard of called code review.
 
-What happened?
---------------
-* Engineering discussions become so heated that an external person must intercede
-* Team member feels confused or frustrated when looking at changes in a codebase
-* Pairing with a junior developer upsets both parties
-* Pull requests diverge wildly and require multiple rebases
-* Deployments fail and individuals take blame in front of the group
 
-When did it take place?
------------------------
-* Multi-pair teams
-* Multi-team companies
-* Open source projects, including GitHub-style companies
+Ancient Code Review
+-------------------
+I've been a consultant for somewhere around 15 years.  You know, I'm actually not sure I can say that.  At the very beginnning of my career, I was scared away from computers by a pretty aggressive engineering team, and it took me years to want to write code again.  Wow, you know, I still feel adrenaline thinking about that?
 
-Where did it take place?
-------------------------
-* Most visible as per-line comments in pull requests
-* Less-visibly, pull requests that stay open forever or require negotiation
-* Post-mortem meetings (can be retros, can be discrete meetings)
-* Group code review
+My first exposure to code review was on that team: I'd write some code, check it in on a branch and push it up for review.  Then, a more senior engineer would download it, print it out and redline it overnight.  I'd come to my cubicle in the morning and that redlined paper was the first thing I'd see.
 
-Why did it happen?
-------------------
-* A lack of accountability or leadership
-  - difficult personalities who try to fill the power vacuum
-* Mechanical code review devices
-  - pull requests vulgarize a complex, abstract conversation into 4chan
-* Distributed teams
-  - most nonverbal communication is eliminated, meaning empathy is difficult to establish
-* Poor empathy
-  - shape up or ship out, you heartless asshole
-  - oh wait, that's me too.  aah!
+Downloading, printing, redlining ... I'm dating myself here, right?  I was talking with a friend the other day and they were slightly astounded that I handwrote papers in college.  Like with cursive and everything!
 
-How can a lack of accountability be remediated?
------------------------------------------------
-* Pair programming
-* Pairs or teams responsible for stories or domain knowledge, not individuals
-  - if this sounds hard to do, you might need to talk more about the code you're writing
-* Blame-free deployments, but accountability in root cause analysis
-* Stop using `git-blame` to discover sabotage; just talk to the last person to touch the code
+Anyway, code review in this form was meant to make sure that I, the most junior person on the team, wasn't checking in a pile of bugs.  Getting feedback from a person who's more familiar with the code is a great way to do that.  I felt like I was part of the team.
 
-How can a mechanical code review be remediated?
------------------------------------------------
-* Um, delete the mechanical code review tool? Duh?
-* Team should agree that gating the release is bad (assumes accountability)
-* Master should always be green and deployable to production
-  - Pairing at the time of checkin or merging to master
+Then the person reviewing the code changed, and the words "why would you ever think this was good code?" showed up.  I went from appreciating the feedback to being scared of judgment at work.
 
-How can a distributed team be remediated?
------------------------------------------
-* Fire your remote team
-* Work happens in the office, thinking happens everywhere else
-* Sustainable schedule and culture
-  - if a 30 hour week is the only way to get a team member, do that
-  - qa note: how to do compensation for less-than-40
+I stopped showing up consistently and, a little later, the contents of my desk showed up at my front door in a FedEx box.  Seven years passed before I got my second fulltime programming job.
+
+This probably isn't what was supposed to happen.  At least I hope not.
+
+
+Defining Code Review
+--------------------
+There's one special case of code review: the one where everyone likes the code and nothing happens.  Every other case of code review is what psychologists define as conflict, which is an industry term meaning a disagreement, although conflict itself defies reliable definition.  In code review, it doesn't involve throwing heavy objects, dispatching an air force to bomb a foreign country or staging a dance-off to save the youth center.  Hopefully.
+
+John Dewey, the first president of the APA, was really into conflict resolution and came up with this flowchart about a hundred years ago:
+
+```text
+            [1 Define Problem]
+                     |
+           [2 Analyze Problem]
+                     |
+    [3 Determine Criteria for Solution]
+                     |
+          [4 Propose Solutions]
+                     |
+      [5 Evaluate Proposed Solution]
+                     |
+           [6 Select Solution]
+                     |
+         [7 Implement Solution]
+```
+
+Code review roughly lines up with this flowchart.  But it's pretty abstract, and it could benefit from a concrete example.
+
+
+An Example Code Review
+----------------------
+Let's look at some code and go through the code review process.
+
+```ruby
+  class LedgerEntryImporter < Struct.new(:path)
+    HEADERS = {company: :"Company Name", stock_price: :"Stock Price"}
+
+    def parse
+      CSV.parse(path, headers: true) do |row|
+        entry = LedgerEntry.new
+        HEADERS.each do |attribute, column|
+          entry.attributes[attribute] = row.values[column.to_s]
+        end
+        entry.save!
+      end
+    end
+  end
+```
+
+Let's go through each of Dewey's steps:
+
+1. Define Problem
+  * Reviewer: "I think the HEADERS declaration needs to change".
+  * Reviewee: "I don't understand."
+  * Reviewer: "Well, I think there might be a better choice here than turning the value into a symbol."
+
+2. Analyze problem
+  * Reviewee: "I chose the symbol values here because Ruby would allocate memory otherwise."
+  * Reviewer: "Is memory usage particularly bad here?"
+  * Reviewee: "No, it just loads the headers.  But it's more memory efficient to do it this way."
+
+3. Determine criteria for solution
+  * Reviewer: "I hear what you're saying about memory use, and that's a reasonable concern.  If this code ran again, I don't think it would use more memory."
+  * Reviewee: "Well, it might."
+  * Reviewer: "I think that this code is only going run at require time, though."
+
+4. Propose solutions
+  * Reviewee: "Hmm.  Okay.  So what should it do?"
+  * Reviewer: "I think `HEADERS` needs to be a hash that associates a column from the CSV to an attribute on `LedgerEntry`."
+  * Reviewee: "Couldn't I also put this mapping into a yaml file?"
+  * Reviewer: "Sure."
+
+5. Evaluate proposed solutions
+  * Reviewee: "Well, okay, so memory isn't going to be a factor in either case. I like the YAML idea because I can change it whenever I want."
+  * Reviewer: "That's true, but will the headers change per-environment?"
+
+6. Select a solution
+  * Reviewee: "Hm, well, no.  The best idea seems like just cleaning up the hash."
+
+7. Suggest strategies for implementation
+  * Reviewer: "Also, if the values were strings, the `.to_s` on line 96 could be removed."
+
+
 
 How can I get better at empathy at work?
 ----------------------------------------
-* Use "I" statements
-  - no really, "i think" vs. "you think" are totally different
+* Use "I" statements, avoid "you" statements
+  - Scenario: `StockLedger#parse_headers` has no test coverage
+  - Yes: "I really want to write tests for this method"
+  - No: "You should have written tests for this method"
+* Try to cleanly state emotional responses
+  - Scenario: `StockLedger#parse_headers` has 20 lines and 3 conditionals
+  - "I feel like I put too much code into `#parse_headers`"
+  - Don't undershoot: "I think this code is okay, but I might be wrong"
+  - Don't overshoot:  "I'm so terrible at this job, just look at `#parse_headers`"
+* State needs explicitly
+  - Scenario: you got 3 hours of sleep and `StockLedger#parse_headers` still exists
+  - Solution: "I want you to explain this code to me"
+  - Unmet need: "I don't understand this code"
+  - Unmet need: "I can't concentrate long enough to read this code"
 * Identify commonalities and collaborate
   - have the other person teach you something about the code, especially if they're new to it
 * Let your ego die
   - do not grab the keyboard, correct the other person, complete their typing for them
   - if you can't resist that, unplug your keyboard or find a toy to play with
-* Use active listening
 
 Active listening
 ----------------
@@ -120,6 +175,8 @@ Active listening
       - "Hey, I know i'm going to have a bad day because i'm tired"
       - "i'm feeling hungry right now"
       - "let's go get coffee"
+
+
 
 Active listening antipatterns
 -----------------------------
@@ -145,88 +202,3 @@ Active listening antipatterns
 * Creating the guessing game
   - hiding your expectations or needs
   - setting your partner up to fail by making them guess your expectations or needs
-
-A Code Review Gone Wrong
-------------------------
-
-
-
-
-
-
-
-
-
-
-Archive
-=======
-
-What is it?
------------
-* Reviewer
-  * Reading code that someone else on your team has written
-  * Providing direct feedback to that person
-* Reviewee
-  * Hearing that direct feedback constructively
-  * Taking action to remediate issues
-
-
-What does it bring to the team?
--------------------------------
-* Consistency
-  * although mechanical style guides can be applied beforehand
-* Group ownership of the code
-  * ie, multiple people have signed off
-* Context regarding changes happening to a larger codebase
-* Senior programmers gaining confidence in juniors
-  * eg, a phase of onboarding
-* Another gate by which bugs can be stopped
-
-
-How do I do it?
----------------
-* Pair programming
-* Technical talks
-* Pull requests, but only for open-source projects, until github releases a teleporter
-
-
-How have I seen it done wrong?
-------------------------------
-* Offline code review
-  * Pull requests
-  * Mondrian/Gerrit/Phabricator
-* Group code review
-* Top-down hierarchical code review
-  * Line-counting for success metrics
-  * Number of bugs closed in Tracker
-
-
-What can be done to remediate the problem?
-------------------------------------------
-* If you find yourself using automated tools to gate people's checkins, fire your engineering managers and start over
-* Pair on writing all code
-  * Since code review can help with feeling collective ownership anyway, just go the distance
-* At least pair on code review
-
-
-Why in-person code review?
---------------------------
-* Getting on the same page verbally is hard, but impossible in writing
-* Nonverbal communication is critical as a reviewee because:
-  * you are being judged
-  * your code is being judged
-  * you need help in understanding what the expectations are
-* Nonverbal communication is critical as a reviewer because:
-  * you are judging someone else's output
-  * you need to be demonstrate openness to explanation/convincing
-
-
-What it's really about and warning signs
-----------------------------------------
-* Your team's culture and response to change
-* On a positive team:
-  * Modeling good coding practices by looking at good code together
-  * Understanding new dependencies and behaviors
-* On a pathological team:
-  * Excusing being an asshole (eg, the golang gerrit queue)
-  * Breaking in new team members to the dominant pecking order
