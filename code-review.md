@@ -86,8 +86,8 @@ John Dewey, the first president of the APA, was really into conflict resolution 
 Code review roughly lines up with this flowchart.  But it's pretty abstract, and it could benefit from a concrete example.
 
 
-An Example Code Review
-----------------------
+Code Review in Conflict
+-----------------------
 Let's look at some code and go through the code review process.
 
 ```ruby
@@ -110,8 +110,8 @@ Let's go through each of Dewey's steps:
 
 1. Define Problem
   * Reviewer: "I think the HEADERS declaration needs to change".
-  * Reviewee: "I don't understand."
-  * Reviewer: "Well, I think there might be a better choice here than turning the value into a symbol."
+  * Reviewee: "I don't follow.  It's late in the afternoon and I'm pretty tired."
+  * Reviewer: "Well, what I mean to say is that I think there might be a better choice here than turning the value into a symbol."
 
 2. Analyze problem
   * Reviewee: "I chose the symbol values here because Ruby would allocate memory otherwise."
@@ -139,6 +139,54 @@ Let's go through each of Dewey's steps:
 7. Suggest strategies for implementation
   * Reviewer: "Also, if the values were strings, the `.to_s` on line 96 could be removed."
 
+Okay, so a lot of things hapeend here, but the first thing we can tell is that the reviewer and reviewee don't hate each other.  Things got a little tense, like when the reviewer basically says they don't like the code, but it cooled off.  It turns out that both reviewer and reviewee are making things easy by applying a few skills.
+
+First, both reviewer and reviewee are entering the conflict with the idea that both sides will win.  This is a pretty big step for a lot of people, because at least when I'm writing code, I believe that the approach I've taken is right.  Right?  Like, all that time I've invested in some massive function that just gets replaced with a couple of calls to map and reduce:
+
+```ruby
+  class Taco
+    def bean_count
+      total_beans = 0
+      bean_blobs.each do |blob|
+        total_beans += blob.count
+      end
+      total_beans
+    end
+  end
+
+  ...
+
+  class Taco
+    def bean_count
+      bean_blobs.map(&:count).reduce(:+, 0)
+    end
+  end
+```
+
+What!  Freaking Ruby.  Oh well, at least that's easy to test.  Come to think of it, I'm pretty sure that I assume I'm right about a lot of things in the rest of my life too.  Huh.  That's the false attribution fallacy, right?  So the way we beat that is by acknowledging that we're all capable of making that fallacy.
+
+There's also I-messaging in use. You'll notice that the only time someone says "you" is the phrase "I hear what you're saying."  Both parties are talking about their own thoughts and feelings.  This is a super-easy way to completely sidestep unintentional confrontation.  We should all probably be doing more of this day-to-day.
+
+Finally, the reviewer and reviewee are using active listening, which is a skill used to build and maintain empathy.  Usually it's used by marriage counselors, family therapists and teachers, but starting from today, Rubyists can use it too.  You're welcome.
+
+Active Listening
+----------------
+So active listening is great, but it's also a pretty deep topic.  As developers, we're actually set up to fail at active listening by our industry, but since it's a learned skill that nobody's great at to begin with, that's not much of an issue. Alright, enough hand waving, let's talk details.
+
+In active listening, there are two roles, just like in code review.  One of the roles is the Talker.  Let's separate the concepts of talking and vocalizing.  When I talk up here in front of you, I'm attempting to convey information, partially through vocalizing words, but also through nonverbal communication.
+
+The Talker needs to be vulnerable enough to transmit their emotional state in a easy-to-understand way.  By vulnerable, I mean that the Talker has to open themselves up to feedback, which is really hard for a lot of people.
+
+The Talker must also be clear and direct when describing their logical process.  This means you can't use abstract statements.  Instead of a diatribe about Thing A and Thing B, the Talker needs to talk about the `StockCertificateImporter` class and the `decompress_archive` class method.
+
+The other role is the Listener.  Again, let's split the concepts of listening and hearing.  When you hear my words, that's hearing, and when you're attempting to discern some meaning in my mouth-noises, that's listening.
+
+The Listener needs to distant enough from the emotional output to evaluate
+
+So in active listening, both parties are going to vocalize and hear, but only one person is a talker, and only one person is a listener.  Both roles aspire to modeled behaviors, and because we're just human, that's not always going to be possible.
+
+
+
 
 
 How can I get better at empathy at work?
@@ -147,12 +195,12 @@ How can I get better at empathy at work?
   - Scenario: `StockLedger#parse_headers` has no test coverage
   - Yes: "I really want to write tests for this method"
   - No: "You should have written tests for this method"
-* Try to cleanly state emotional responses
+* Clearly state emotional responses
   - Scenario: `StockLedger#parse_headers` has 20 lines and 3 conditionals
   - "I feel like I put too much code into `#parse_headers`"
   - Don't undershoot: "I think this code is okay, but I might be wrong"
   - Don't overshoot:  "I'm so terrible at this job, just look at `#parse_headers`"
-* State needs explicitly
+* Clearly state needs
   - Scenario: you got 3 hours of sleep and `StockLedger#parse_headers` still exists
   - Solution: "I want you to explain this code to me"
   - Unmet need: "I don't understand this code"
