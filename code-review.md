@@ -1,13 +1,131 @@
-Stop Trolling Me: Better Code Review
-====================================
-Does your team regularly turn technical discussions into tense confrontations?  Do you get confused by code changes on a regular basis?  Is pairing with a junior developer frustrating?  Software peer review on a modern development team is essential to healthy code and a happy team. But it's riddled with human-sized pitfalls.  Learn why talking about code in person is important, how to talk about code without burning bridges, and ways everyone can use empathy to remove dread from the workplace.
+# Stop Trolling Me
+
+!SLIDE
+
+# Better Code Review
+
+## Doc Ritezel
+### Ministry of Velocity
+
+!NOTES
+
+  * Hey glad to see some people made it!  I'd like to take a moment and thank Neo for hosting and giving me a chance to look silly on Youtube.  So if you fart during my talk, it's basically going straight on the internet in about an hour.
+
+  * I'm Doc, and I own a consulting shop based here in San Francisco.  Recently I filled out a few forms for the TSA and I realized I've had the great fortune of working with a dozen teams over the last five years.
+
+  * More importantly, I've had the opportunity to review a lot of code.
 
 
-Pitch
------
-Mid-to-small size development teams face growing pains on a frequent basis.  One of the biggest pain points early in a company's life is the way its engineering team talks about code.  With tens of thousands of startups in the world, generating billions of keystrokes per year, at least some of those teams will see conflict.  Sometimes those fights are spectacularly bad, and often they're preventable with a bit of empathy.
+!SLIDE
 
-I'm extracting from my experience as a programmer, an engineering manager, a consultant and a business owner.  I'm also applying part of my psychology background.  I've given talks before, but this is my first at a real conference.
+```ruby
+  class Taco < ActiveRecord::Base
+  end
+```
+
+!NOTES
+
+  * I'm sure you've all had a chance to write some pretty awful ruby.  I won't take that experience away from you.  I'm going to write a Taco.  This might get confusing.
+
+
+!SLIDE
+
+```ruby
+  class Taco < ActiveRecord::Base
+    def eat
+      self.class.destroy_all!
+    end
+  end
+```
+
+!NOTES
+
+  * Oh I see, by defining an eat method that accidentally deletes all tacos in the system, eating one taco means that all tacos get eaten.  Pretty clever!
+
+
+!SLIDE
+
+```ruby
+  class Taco < ActiveRecord::Base
+    def eat
+      self.destroy!
+    end
+
+    def self.tastinesses
+      self.all.map { |taco| taco.tasty == true }
+    end
+  end
+```
+
+!NOTES
+
+  * Here's a class method.  It finds the truth values for the tastiness of all tacos.  I could see doing that with Arel, but the method might have a better name.
+
+
+!SLIDE
+
+```ruby
+  class Taco < ActiveRecord::Base
+    def eat
+      self.destroy!
+    end
+
+    def self.tastinesses
+      self.all.map { |taco| taco.tasty == true }
+    end
+
+    def apply_sauce(name: nil)
+      update_column(sauce_name: "#{name == nil ? return : name}")
+      save
+      save!
+      p sauce_name
+    end
+  end
+```
+
+!NOTES
+
+  * Oh!  Wow.  It looks like the code should only set the value of sauce_name if sauce name is non-nil.  I feel like this function could be a bit more straightforward.  Can we look at the tests for this function?  No?  It's only a demo I'm showing?
+
+
+!SLIDE
+
+```ruby
+  class Taco < ActiveRecord::Base
+    def eat
+      self.destroy!
+    end
+
+    def self.tastinesses
+      self.all.map { |taco| taco.tasty == true }
+    end
+
+    def apply_sauce(name: nil)
+      update_column(sauce_name: "#{name == nil ? return : name}")
+      save
+      save!
+      p sauce_name
+    end
+
+    def add_cheese
+      define_singleton_method :cheese, -> { 'queso' }
+    end
+  end
+```
+
+!NOTES
+
+  * Hmm.  I'd like to see a version of this function that doesn't include metaprogramming.
+
+
+!SLIDE
+
+## Good code review doesn't feel like an attack
+
+!NOTES
+
+  * This is the important part:
+
 
 
 Metadata
