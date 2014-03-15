@@ -1,46 +1,75 @@
-# Stop Trolling Me
+# Code Review
 
 !SLIDE
 
 # Better Code Review
 
-## Doc Ritezel
-### Ministry of Velocity
 
-!NOTES
+!SLIDE
 
-  * Hey glad to see some people made it!  I'd like to take a moment and thank Neo for hosting and giving me a chance to look silly on Youtube.  So if you fart during my talk, it's basically going straight on the internet in about an hour.
-
-  * I'm Doc, and I own a consulting shop based here in San Francisco.  Recently I filled out a few forms for the TSA and I realized I've had the great fortune of working with a dozen teams over the last five years.
-
-  * More importantly, I've had the opportunity to review a lot of code.
+# Doc Doc Doc
+### Company.com
 
 
 !SLIDE
 
-```ruby
-  class Taco < ActiveRecord::Base
-  end
+## Hilarious Twitter
+
+```txt
+Shut up
 ```
-
-!NOTES
-
-  * I'm sure you've all had a chance to write some pretty awful ruby.  I won't take that experience away from you.  I'm going to write a Taco.  This might get confusing.
 
 
 !SLIDE
 
-```ruby
-  class Taco < ActiveRecord::Base
-    def eat
-      self.class.destroy_all!
-    end
-  end
+## Horrifying HN Post
+
+```txt
+Bro just man up
+
+Signed,
+monkeydude
 ```
 
-!NOTES
+Never read the comments.
 
-  * Oh I see, by defining an eat method that accidentally deletes all tacos in the system, eating one taco means that all tacos get eaten.  Pretty clever!
+
+!SLIDE
+
+## Code Review is Useful
+
+Get everyone up to speed
+
+Receive tips and tricks
+
+Integrate different styles
+
+
+!SLIDE
+
+## Code Review goes Wrong
+
+Quote wars
+
+Commit ownership
+
+Random personal battles
+
+
+!SLIDE
+
+### Wait, No!
+
+Goal was quality
+
+Goal has become winning
+
+
+!SLIDE
+
+##  Let's Write Some Ruby!
+
+### Never say this at home, kids.
 
 
 !SLIDE
@@ -50,6 +79,14 @@
     def eat
       self.destroy!
     end
+  end
+```
+
+!SLIDE
+
+```ruby
+  class Taco < ActiveRecord::Base
+    ...
 
     def self.tastinesses
       self.all.map { |taco| taco.tasty == true }
@@ -57,22 +94,11 @@
   end
 ```
 
-!NOTES
-
-  * Here's a class method.  It finds the truth values for the tastiness of all tacos.  I could see doing that with Arel, but the method might have a better name.
-
-
 !SLIDE
 
 ```ruby
   class Taco < ActiveRecord::Base
-    def eat
-      self.destroy!
-    end
-
-    def self.tastinesses
-      self.all.map { |taco| taco.tasty == true }
-    end
+    ...
 
     def apply_sauce(name: nil)
       update_column(sauce_name: "#{name == nil ? return : name}")
@@ -83,29 +109,12 @@
   end
 ```
 
-!NOTES
-
-  * Oh!  Wow.  It looks like the code should only set the value of sauce_name if sauce name is non-nil.  I feel like this function could be a bit more straightforward.  Can we look at the tests for this function?  No?  It's only a demo I'm showing?
-
 
 !SLIDE
 
 ```ruby
   class Taco < ActiveRecord::Base
-    def eat
-      self.destroy!
-    end
-
-    def self.tastinesses
-      self.all.map { |taco| taco.tasty == true }
-    end
-
-    def apply_sauce(name: nil)
-      update_column(sauce_name: "#{name == nil ? return : name}")
-      save
-      save!
-      p sauce_name
-    end
+    ...
 
     def add_cheese
       define_singleton_method :cheese, -> { 'queso' }
@@ -113,20 +122,183 @@
   end
 ```
 
-!NOTES
+!SLIDE
 
-  * Hmm.  I'd like to see a version of this function that doesn't include metaprogramming.
+# Being Right
+### (as Reviewer)
+
+"That's not what the Rails guide says"
+
+!SLIDE
+
+# Being Right
+### (as Reviewer)
+
+"That's not what the Rails guide says"
+
+Really, an appeal to outside authority
+
+!SLIDE
+
+# Generalizing
+### (as Reviewer)
+
+"You should never use map this way"
+
+!SLIDE
+
+# Generalizing
+### (as Reviewer)
+
+"You should never use map this way"
+
+Reviewee feels confused and defensive
 
 
 !SLIDE
 
-## Good code review doesn't feel like an attack
+# Labeling
+### (as Reviewer)
+
+"As a junior developer, you wouldn't know that Ruby code doesn't look like this"
+
+
+!SLIDE
+
+# Labeling
+### (as Reviewer)
+
+"As a junior developer, you wouldn't know that ..."
+
+Once you attach a label, you can't take it back
+
+
+!SLIDE
+
+# Leading Questions
+### (as Reviewer)
+
+"How can we make this better?"
+
+
+!SLIDE
+
+# Leading Questions
+### (as Reviewer)
+
+"How can we make this better?"
+
+Hiding expectations from the Reviewee
+
+
+!SLIDE
+
+## Whatever
+
+These sentences just come out
+
+You just want to move on
+
+
+!SLIDE
+
+## Othering
+
+Senior enough to review
+
+Senior enough to exclude
+
+
+!SLIDE
+
+## You're not a bad person
+
+Halting your self-improvement
+
+Possibly destroying engineering culture
+
+
+!SLIDE
+
+## Reviewers are not attackers
+
+#### Don't be one.  Watch for those signs.
+
+
+!SLIDE
+
+## Signals for Reviewees
+
+Discomfort
+
+Exhaustion
+
+Silence
+
+
+!SLIDE
+
+# Getting Defensive
+### (as Reviewee)
+
+Correcting misperceptions
+
+"I've been writing Ruby for 5 years"
+
+
+!SLIDE
+
+# Getting Defensive
+### (as Reviewee)
+
+Justifying actions
+
+"I've written code like this before"
+
+
+!SLIDE
+
+# Getting Defensive
+### (as Reviewee)
+
+Tuning out
+
+"Shit I got some high score on Threes"
+
+
+!SLIDE
+
+# Counter-Critiquing
+### (as Reviewee)
+
+Reviewer: "This method has 10 lines"
+
+Reviewee: "You committed a 50 line method yesterday"
+
+
+
+!SLIDE
+
+## There is no magic bullet
+
+Keeping all these things in mind is hard work
+
+Like yoga
+
+
+!SLIDE
+
+## Cultures can be toxic
+
+Sometimes you just have to move on
+
+
+!SLIDE
+
+# Doc Doc Doc
+### Thanks!
 
 !NOTES
-
-  * This is the important part:
-
-
 
 Metadata
 --------
@@ -153,14 +325,6 @@ The Talk
     * I use SMS to run my business because anything else feels too long
     * Code review frequency spectrum
     * Making a change to a gem can feel great if it's fast, or infuriating if slow (forking in anger)
-* But what else is going on?
-    * Being Right
-    * Generalizing
-    * The guessing game
-    * Contempt
-* What kinds of responses could I have?
-    * Defensiveness
-    * Counter-critiquing
 * Ways of getting better at dealing with difficult people
     * Use I-statements, avoid you-statements
     * Clearly state emotions and physical situation
@@ -195,9 +359,9 @@ How can I get better at empathy at work?
 
 Active listening
 ----------------
-* Two roles: Talker and Listener
-* Listener will understand the emotional and logical output of the Talker
-* Talker will be vulnerable enough to transmit the emotional content, while clear enough to transmit the logical content
+* Two roles: Reviewee and Reviewer
+* Reviewer will understand the emotional and logical output of the Reviewee
+* Reviewee will be vulnerable enough to transmit the emotional content, while clear enough to transmit the logical content
 * Tips:
   - Allow yourself to be curious and open-minded
   - Allow yourself to listen/talk as if you are not personally responsible for the content
@@ -209,25 +373,35 @@ Active listening
 
 Active listening antipatterns
 -----------------------------
-* Being right (as Listener)
-  - using logic or facts to disprove Talker's narrative
+* Being right (as Reviewer)
+  - using logic or facts to disprove Reviewee's narrative
+  * "That's not really what the rails guide says"
 
-* Getting defensive (as Talker)
+* Generalizing (as Reviewer)
+  * making generalizations leads to both Reviewee and Reviewer feeling helpless or confused
+  * absolute language is a part of this
+  * bad reviewer: "that's not how we really name classes in idiomatic ruby"
+  * good reviewer: "one thing that would make the class easier to find is renaming `Active_snake_case` to `ActiveSnakeCase` instead"
+
+* Being contemptuous (as Reviewer)
+  - attaching permanent negative labels means you can't talk to that person again
+  - pathologizing your partner does the same thing
+  * bad reviewer: "you're a junior developer, so you wouldn't know this, but ..."
+  * good reviewer: "one thing that's good about ruby is ..."
+
+* Asking leading questions (as Reviewer)
+  - hiding your expectations or needs
+  - setting your partner up to fail by making them guess your expectations or needs
+  * bad reviewer: "How can we make this better?"
+  * good reviewer: "How can we make this better?  I'd go ahead and memoize dingus"
+
+These sentences can come out of your mouth as a reviewer after feeling like you're done and just want to move on.
+
+* Getting defensive (as Reviewee)
   - correcting the narrative or misperceptions
   - justifying every major plot point
   - tuning out (physically or mentally)
+  * you are now feeling attacked.  it's good to notice it.  it's time to stand up, walk around and leave the physical space for a while.
 
-* Counter-critiquing (as Talker)
-  * responding to Listener's constructive criticism with criticisms about the Listener
-
-* Generalizing
-  * making generalizations leads to both Talker and Listener feeling helpless or confused
-  * absolute language is a part of this
-
-* Being contemptuous toward your partner
-  - attaching permanent negative labels means you can't talk to that person again
-  - pathologizing your partner does the same thing
-
-* Creating the guessing game
-  - hiding your expectations or needs
-  - setting your partner up to fail by making them guess your expectations or needs
+* Counter-critiquing (as Reviewee)
+  * responding to Reviewer's constructive criticism with criticisms about the Reviewer
