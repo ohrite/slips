@@ -49,18 +49,18 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>You've got landmines</h2>
-
-<p>rvm: 14599 lines, partial coverage.</p>
-
-<p>EC2 bootstrap scripts: 80 lines, no coverage.</p>
-
-<h3>Your code at home is unsafe.</h3>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>You've got landmines</h2>
+        
+        <p>rvm: 14599 lines, partial coverage.</p>
+        
+        <p>EC2 bootstrap scripts: 80 lines, no coverage.</p>
+        
+        <h3>Your code at home is unsafe.</h3>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -75,15 +75,15 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Hooray an ops task</h2>
-    
-    <p><textarea class='code' display='none' mode='&#x000A;#!/bin/sh'>RVM_0_12_3_SHA=d6b4de7cfec42f7ce33198f0bd82544af51e8aa5&#x000A;&#x000A;env | grep -q "APP_USER=" || echo "Please set APP_USER environment variable"&#x000A;&#x000A;# perl -e 'print crypt("password", "salt"),"\n"'&#x000A;getent passwd $APP_USER >/dev/null 2>&1 || useradd $APP_USER -p SALTED&#x000A;&#x000A;root_keys=/root/.ssh/authorized_keys&#x000A;authorized_keys=`cat $root_keys`&#x000A;user_keys=/home/$APP_USER/.ssh/authorized_keys&#x000A;grep -sq "$authorized_keys" $user_keys || cat $root_keys >> $user_keys&#x000A;&#x000A;perl -p -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config&#x000A;/etc/init.d/sshd reload&#x000A;&#x000A;yum install -y gcc-c++ readline-devel zlib zlib-devel libffi-devel openssl-devel iconv-devel&#x000A;&#x000A;sudo_string='ALL            ALL = (ALL) NOPASSWD: ALL'&#x000A;grep "$sudo_string" /etc/sudoers || echo "$sudo_string" >> /etc/sudoers</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Hooray an ops task</h2>
+        
+        <p><textarea class='code' display='none' mode='&#x000A;#!/bin/sh'>RVM_0_12_3_SHA=d6b4de7cfec42f7ce33198f0bd82544af51e8aa5&#x000A;&#x000A;env | grep -q "APP_USER=" || echo "Please set APP_USER environment variable"&#x000A;&#x000A;# perl -e 'print crypt("password", "salt"),"\n"'&#x000A;getent passwd $APP_USER >/dev/null 2>&1 || useradd $APP_USER -p SALTED&#x000A;&#x000A;root_keys=/root/.ssh/authorized_keys&#x000A;authorized_keys=`cat $root_keys`&#x000A;user_keys=/home/$APP_USER/.ssh/authorized_keys&#x000A;grep -sq "$authorized_keys" $user_keys || cat $root_keys >> $user_keys&#x000A;&#x000A;perl -p -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config&#x000A;/etc/init.d/sshd reload&#x000A;&#x000A;yum install -y gcc-c++ readline-devel zlib zlib-devel libffi-devel openssl-devel iconv-devel&#x000A;&#x000A;sudo_string='ALL            ALL = (ALL) NOPASSWD: ALL'&#x000A;grep "$sudo_string" /etc/sudoers || echo "$sudo_string" >> /etc/sudoers</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -94,32 +94,32 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Testing in RSpec</h2>
-    
-    <p><textarea class='code' display='none' mode=''># lib/dude.rb&#x000A;&#x000A;class Dude < Struct.new(:indecent); end</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''># lib/pants.rb&#x000A;&#x000A;module Pants&#x000A;  def self.put_on(dude)&#x000A;    dude.indecent = false&#x000A;  end&#x000A;end</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''># spec/lib/pants_spec.rb&#x000A;&#x000A;require 'spec_helper'&#x000A;&#x000A;describe Pants do&#x000A;  let(:me) { Dude.new(true) }&#x000A;&#x000A;  it "should cover my shame" do&#x000A;    Pants.put_on(me)&#x000A;    me.indecent.should == false&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Testing in RSpec</h2>
+        
+        <p><textarea class='code' display='none' mode=''># lib/dude.rb&#x000A;&#x000A;class Dude < Struct.new(:indecent); end</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''># lib/pants.rb&#x000A;&#x000A;module Pants&#x000A;  def self.put_on(dude)&#x000A;    dude.indecent = false&#x000A;  end&#x000A;end</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''># spec/lib/pants_spec.rb&#x000A;&#x000A;require 'spec_helper'&#x000A;&#x000A;describe Pants do&#x000A;  let(:me) { Dude.new(true) }&#x000A;&#x000A;  it "should cover my shame" do&#x000A;    Pants.put_on(me)&#x000A;    me.indecent.should == false&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>RSpec Conventions are Great</h2>
-
-<p>Put your setup into <code>spec/spec_helper.rb</code></p>
-
-<p>Only test one thing at a time</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>RSpec Conventions are Great</h2>
+        
+        <p>Put your setup into <code>spec/spec_helper.rb</code></p>
+        
+        <p>Only test one thing at a time</p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -130,60 +130,60 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Test Driven Bash</h2>
-    
-    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;. spec/spec_helper.sh&#x000A;&#x000A;describe "pants"&#x000A;&#x000A;it_should_cover_my_shame () {&#x000A;  put_on_pants&#x000A;  test "$clothing" = "pants"&#x000A;}</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''># spec/spec_helper.sh&#x000A;&#x000A;. script/pants.sh</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [FAIL]&#x000A;  + put_on_pants&#x000A;  ./spec/script/pants_spec.sh: line 10: put_on_pants: command not found&#x000A;  exit code 127&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   0 | Failed:   1</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Test Driven Bash</h2>
+        
+        <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;. spec/spec_helper.sh&#x000A;&#x000A;describe "pants"&#x000A;&#x000A;it_should_cover_my_shame () {&#x000A;  put_on_pants&#x000A;  test "$clothing" = "pants"&#x000A;}</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''># spec/spec_helper.sh&#x000A;&#x000A;. script/pants.sh</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [FAIL]&#x000A;  + put_on_pants&#x000A;  ./spec/script/pants_spec.sh: line 10: put_on_pants: command not found&#x000A;  exit code 127&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   0 | Failed:   1</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Make it Pass</h2>
-    
-    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  clothing=pants&#x000A;}</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   1 | Failed:   0</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Make it Pass</h2>
+        
+        <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  clothing=pants&#x000A;}</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;=========================================================&#x000A;Tests:    1 | Passed:   1 | Failed:   0</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Driving out features</h2>
-    
-    <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;...&#x000A;&#x000A;it_should_not_let_me_act_like_uncle_richard () {&#x000A;  clothing=shirt&#x000A;  put_on_pants&#x000A;  test "$clothing" = "shirt pants"&#x000A;}</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [FAIL]&#x000A;    + clothing=shirt&#x000A;    + put_on_pants&#x000A;    + clothing=pants&#x000A;    + test shirt = 'shirt pants'&#x000A;    exit code 1&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   1 | Failed:   1</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Driving out features</h2>
+        
+        <p><textarea class='code' display='none' mode=''># spec/script/pants_spec.sh&#x000A;&#x000A;...&#x000A;&#x000A;it_should_not_let_me_act_like_uncle_richard () {&#x000A;  clothing=shirt&#x000A;  put_on_pants&#x000A;  test "$clothing" = "shirt pants"&#x000A;}</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [FAIL]&#x000A;    + clothing=shirt&#x000A;    + put_on_pants&#x000A;    + clothing=pants&#x000A;    + test shirt = 'shirt pants'&#x000A;    exit code 1&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   1 | Failed:   1</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Making it Green</h2>
-    
-    <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  clothing="$clothing pants"&#x000A;}</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [PASS]&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   2 | Failed:   0</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Making it Green</h2>
+        
+        <p><textarea class='code' display='none' mode=''># script/pants.sh&#x000A;&#x000A;put_on_pants () {&#x000A;  clothing="$clothing pants"&#x000A;}</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''>pants&#x000A;  should cover my shame:                           [PASS]&#x000A;  should not let me act like uncle richard:        [PASS]&#x000A;=========================================================&#x000A;Tests:    2 | Passed:   2 | Failed:   0</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
